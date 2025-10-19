@@ -4,13 +4,13 @@ import ProfastLogo from "../ProFastLogo/ProfastLogo";
 const Footer = () => {
   return (
     <div>
-      <footer className="footer footer-horizontal footer-center bg-black text-primary-content p-10">
+      <footer className="footer footer-horizontal footer-center bg-black text-primary-content p-10 rounded-2xl">
         <aside>
           <ProfastLogo></ProfastLogo>
-          <p className="font-bold">
-            ACME Industries Ltd.
-            <br />
-            Providing reliable tech since 1992
+          <p className="">
+            Enjoy fast, reliable parcel delivery with real-time tracking and
+            zero hassle. From personal packages to <br /> business shipments —
+            we deliver on time, every time.
           </p>
           <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
         </aside>
