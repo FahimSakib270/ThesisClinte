@@ -19,7 +19,7 @@ const ClientLogosSlider = () => {
   return (
     <section className="py-12 bg-base-100">
       <div className="container mx-auto px-4">
-        <h2 className="text-center text-2xl font-semibold mb-8 text-gray-700">
+        <h2 className="text-center text-3xl font-bold mb-10 text-gray-700">
           We've helped thousands of sales teams
         </h2>
 
@@ -41,12 +41,12 @@ const ClientLogosSlider = () => {
           {logos.map((logo, index) => (
             <SwiperSlide
               key={index}
-              className="!flex !items-center !justify-center !w-auto !h-16 grayscale hover:grayscale-0 transition cursor-pointer"
+              className="!flex !items-center !justify-center !w-auto !h-16  transition cursor-pointer"
             >
               <img
                 src={logo}
                 alt={`Client ${index + 1}`}
-                className=" object-contain max-h-16"
+                className="h-full object-contain max-h-10"
               />
             </SwiperSlide>
           ))}
