@@ -5,7 +5,7 @@ const faqData = [
     question: "How does this posture corrector work?",
     answer:
       "A posture corrector works by providing support and gentle alignment to your shoulders, back, and spine, encouraging you to maintain proper posture throughout the day. Here's how it typically functions: A posture corrector works by providing support and gentle alignment to your shoulders.",
-    defaultOpen: true, // First item open by default
+    defaultOpen: true,
   },
   {
     question: "Is it suitable for all ages and body types?",

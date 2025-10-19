@@ -5,6 +5,7 @@ import ClientLogosSlider from "../../ClientLogosSlider/ClientLogosSlider";
 import HowItWorks from "../HowItWorks/HowItWorks";
 import FeatureSection from "../FeatureSection/FeatureSection";
 import FAQSection from "../FAQSection/FAQSection";
+import BeMerchant from "../BeMerchant/BeMerchant";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <ClientLogosSlider></ClientLogosSlider>
       <FeatureSection></FeatureSection>
       <FAQSection></FAQSection>
+      <BeMerchant></BeMerchant>
     </div>
   );
 };
