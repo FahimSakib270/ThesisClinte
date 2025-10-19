@@ -1,9 +1,19 @@
 import React from "react";
 import img1 from "../../../assets/logo/location-merchant.png";
-
+import bgImage from "../../../assets/be-a-merchant-bg.png";
 const BeMerchant = () => {
   return (
-    <div className="bg-[#03373D] p-8 md:p-12 lg:p-20 rounded-4xl relative overflow-hidden mb-10">
+    <div
+      className="p-8 md:p-12 lg:p-20 rounded-4xl relative overflow-hidden mb-10"
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundColor: "#03373D",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      {/* Optional gradient overlay */}
       <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-r from-[#03373D] to-transparent opacity-30"></div>
 
       <div className="flex flex-col lg:flex-row-reverse items-center gap-8 lg:gap-16">
