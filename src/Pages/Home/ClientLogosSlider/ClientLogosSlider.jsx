@@ -5,13 +5,13 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 
-import client1 from "../../assets/brands/amazon.png";
-import client2 from "../../assets/brands/amazon_vector.png";
-import client3 from "../../assets/brands/casio.png";
-import client4 from "../../assets/brands/moonstar.png";
-import client5 from "../../assets/brands/randstad.png";
-import client6 from "../../assets/brands/start-people 1.png";
-import client7 from "../../assets/brands/start.png";
+import client1 from "../../../assets/brands/amazon.png";
+import client2 from "../../../assets/brands/amazon_vector.png";
+import client3 from "../../../assets/brands/casio.png";
+import client4 from "../../../assets/brands/moonstar.png";
+import client5 from "../../../assets/brands/randstad.png";
+import client6 from "../../../assets/brands/start-people 1.png";
+import client7 from "../../../assets/brands/start.png";
 
 const logos = [client1, client2, client3, client4, client5, client6, client7];
 

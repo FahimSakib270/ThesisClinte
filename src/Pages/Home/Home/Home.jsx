@@ -1,12 +1,13 @@
 import React from "react";
 import Banner from "../Banner/Banner";
 import OurServices from "../Service/OurService";
-import ClientLogosSlider from "../../ClientLogosSlider/ClientLogosSlider";
+
 import HowItWorks from "../HowItWorks/HowItWorks";
 import FeatureSection from "../FeatureSection/FeatureSection";
 import FAQSection from "../FAQSection/FAQSection";
 import BeMerchant from "../BeMerchant/BeMerchant";
 import CustomerReviews from "../CustomerReviews/CustomerReviews";
+import ClientLogosSlider from "../ClientLogosSlider/ClientLogosSlider";
 
 const Home = () => {
   return (
