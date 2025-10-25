@@ -24,7 +24,9 @@ const DashBoardLayout = () => {
             </label>
           </div>
           <div className="mx-2 flex-1 px-2">
-            <h1 className="text-xl font-bold text-gray-800">Dashboard</h1>
+            <h1 className="text-xl font-bold text-gray-800 text-center">
+              Dashboard
+            </h1>
           </div>
         </header>
 
