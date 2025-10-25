@@ -5,8 +5,10 @@ import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Auth/Login/Login";
 import SignIn from "../Pages/Auth/SignIn/SignIn";
 import Coverage from "../Pages/Coverage/Coverage";
-import PrivateRoute from "../Routes/PrivateRoute";
+import PrivateRoute from "../Routes/PrivateRoute"; // Assuming you plan to use this later
 import SendParcel from "../Pages/SendParcel/SendParcel";
+import DashBoardLayout from "../Layouts/DashBoardLayout";
+import MyParcels from "../Pages/DashBoards/MyParcels/MyParcels";
 
 export const router = createBrowserRouter([
   {
@@ -19,19 +21,18 @@ export const router = createBrowserRouter([
       },
       {
         path: "/coverage",
-        Component: Coverage,
+        element: <Coverage />, // Use 'element' instead of 'Component'
       },
       {
         path: "/sendParcel",
         element: (
           // <PrivateRoute>
-          <SendParcel></SendParcel>
+          <SendParcel />
           // </PrivateRoute>
         ),
       },
     ],
   },
-
   {
     path: "/",
     element: <AuthLayout />,
@@ -43,6 +44,21 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <SignIn />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard", // Parent path
+    element: (
+      // <PrivateRoute>
+      <DashBoardLayout />
+      // </PrivateRoute>
+    ),
+    children: [
+      {
+        // Relative path: /dashboard/myParcels
+        path: "myParcels", // Changed from "/myParcels" to "myParcels"
+        element: <MyParcels />, // Use 'element' instead of 'Component'
       },
     ],
   },
