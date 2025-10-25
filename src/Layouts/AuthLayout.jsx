@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router";
 import authImage from "../assets/AuthImage/authImage.png";
-import ProFastLogo from "../Pages/shared/proFastLogo/proFastLogo";
+import ProfastLogo from "../Pages/Shared/ProFastLogo/ProfastLogo";
 
 const AuthLayout = () => {
   return (
@@ -9,7 +9,7 @@ const AuthLayout = () => {
       <div className="max-w-6xl w-full bg-white rounded-xl shadow-xl overflow-hidden">
         {/* Header Logo */}
         <div className="p-6  border-gray-200">
-          <ProFastLogo />
+          <ProfastLogo />
         </div>
 
         {/* Main Content */}

@@ -1,9 +1,10 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import useAuth from "../../../hooks/useAuth";
 
 const Login = () => {
+  const { signIn } = useAuth();
   const {
     register,
     handleSubmit,
@@ -13,6 +14,16 @@ const Login = () => {
   const onSubmit = (data) => {
     console.log(data);
     // You can add authentication logic here
+    signIn(data.email, data.password)
+      .then((userCredential) => {
+        // Signed in
+        const userSignedIn = userCredential.user;
+        console.log(userSignedIn);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
   };
 
   return (

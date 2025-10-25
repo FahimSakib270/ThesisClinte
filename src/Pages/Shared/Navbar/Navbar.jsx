@@ -1,12 +1,23 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import ProfastLogo from "../ProFastLogo/ProfastLogo";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
+  const { user, Logout } = useAuth();
+  const handleLogOut = () => {
+    Logout();
+  };
   const navItems = (
     <>
       <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
         <NavLink to="/services">Services</NavLink>
+      </li>
+      <li>
+        <NavLink to="/sendParcel">Send parcel</NavLink>
       </li>
       <li>
         <NavLink to="/coverage">Coverage</NavLink>
@@ -50,16 +61,30 @@ const Navbar = () => {
             {navItems}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">
+        <button className="btn btn-ghost text-xl">
           <ProfastLogo></ProfastLogo>
-        </a>
+        </button>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
-      <div className="navbar-end">
-        <a className="btn">Button</a>
-      </div>
+      {user ? (
+        <>
+          <div className="navbar-end">
+            <a onClick={handleLogOut} className="btn bg-[#CAEB66] ">
+              Logout
+            </a>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="navbar-end">
+            <Link className="bg-[#CAEB66] btn" to="/login">
+              Login
+            </Link>
+          </div>
+        </>
+      )}
     </div>
   );
 };
