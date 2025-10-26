@@ -2,7 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { FiEye, FiCreditCard, FiTrash2 } from "react-icons/fi"; // Import icons
+import { FiEye, FiCreditCard, FiTrash2 } from "react-icons/fi";
+// Import Swal from sweetalert2
+import Swal from "sweetalert2";
 
 const MyParcels = () => {
   const { user } = useAuth();
@@ -12,13 +14,15 @@ const MyParcels = () => {
     data: parcels = [],
     isLoading,
     error,
+    refetch, // Destructure refetch to update the list after deletion
   } = useQuery({
     queryKey: ["my-parcels", user?.email],
     queryFn: async () => {
       if (!user?.email) {
         throw new Error("User email not available");
       }
-      const res = await axiosSecure.get(`/api/parcels/user/${user.email}`);
+      const res = await axiosSecure.get(`/api/parcels/user/${user.email}`); // This calls the backend route we added
+      console.log("Fetched parcels:", res.data); // Add this log to check the data received
       return res.data;
     },
     enabled: !!user?.email,
@@ -37,18 +41,45 @@ const MyParcels = () => {
   };
 
   const handleDelete = async (parcelId) => {
-    // Confirmation dialog (optional but recommended)
-    if (window.confirm("Are you sure you want to delete this parcel?")) {
+    // Use Swal.fire for the confirmation dialog
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33", // Red color for danger
+      cancelButtonColor: "#3085d6", // Blue color for cancel
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
+    });
+
+    // If the user confirms (clicks "Yes, delete it!")
+    if (result.isConfirmed) {
       try {
-        await axiosSecure.delete(`/api/parcels/${parcelId}`); // Replace with your delete API endpoint
-        // Optionally refetch the data after deletion
-        // refetch(); // if you destructure refetch from useQuery
-        console.log("Parcel deleted:", parcelId);
+        // Make the API call to delete the parcel
+        // Note: You need to implement the DELETE route on your backend
+        await axiosSecure.delete(`/api/parcels/${parcelId}`); // Replace with your delete API endpoint if you add one
+
+        // Show success message
+        Swal.fire({
+          icon: "success",
+          title: "Deleted!",
+          text: "Your parcel has been deleted.",
+        });
+
+        // Refetch the data to update the table and remove the deleted item
+        refetch();
       } catch (err) {
         console.error("Error deleting parcel:", err);
-        // Show an error toast or message
+        // Show an error toast or message using Swal
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: err.response?.data?.message || "Failed to delete the parcel.",
+        });
       }
     }
+    // If the user clicks "Cancel", the function just ends here without deleting.
   };
 
   if (isLoading) {
@@ -61,6 +92,7 @@ const MyParcels = () => {
   }
 
   if (error) {
+    console.error("Error in MyParcels component:", error); // Add this log to see the error details
     return (
       <div className="p-6">
         <h1 className="text-2xl font-bold mb-4">My Parcels</h1>
@@ -127,7 +159,7 @@ const MyParcels = () => {
                   <td>{new Date(parcel.creation_date).toLocaleDateString()}</td>
                   <td>
                     {" "}
-                    {/* Action buttons column */}
+                    {/* Action buttons column - Removed the space {" "} */}
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleView(parcel._id)}
