@@ -113,6 +113,7 @@ const MyParcels = () => {
                 <th>Delivery Status</th>
                 <th>Payment Status</th>
                 <th>Created</th>
+                <th>Tracking Id</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -152,6 +153,7 @@ const MyParcels = () => {
                     </span>
                   </td>
                   <td>{new Date(parcel.creation_date).toLocaleDateString()}</td>
+                  <td>{parcel.tracking_id}</td>
                   <td>
                     <div className="flex gap-2">
                       <button

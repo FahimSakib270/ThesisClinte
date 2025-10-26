@@ -1,10 +1,58 @@
 import React from "react";
-import { Link, Outlet } from "react-router";
+import { Link, Outlet, useLocation, Navigate } from "react-router";
 import ProfastLogo from "../Pages/Shared/ProFastLogo/ProfastLogo";
 
-import { FiPackage, FiMenu } from "react-icons/fi";
+import {
+  FiPackage,
+  FiMenu,
+  FiCreditCard,
+  FiHome,
+  FiTruck,
+  FiUser,
+  FiSettings,
+} from "react-icons/fi";
 
 const DashBoardLayout = () => {
+  const location = useLocation();
+
+  // If the current path is just /dashboard, redirect to myParcels
+  if (location.pathname === "/dashboard") {
+    return <Navigate to="/dashboard/myParcels" replace />;
+  }
+
+  const navItems = [
+    {
+      path: "/",
+      label: "Home",
+      icon: <FiHome className="w-5 h-5" />,
+    },
+    {
+      path: "/dashboard/myParcels",
+      label: "My Parcels",
+      icon: <FiPackage className="w-5 h-5" />,
+    },
+    {
+      path: "/dashboard/history",
+      label: "Payment History",
+      icon: <FiCreditCard className="w-5 h-5" />,
+    },
+    {
+      path: "/dashboard/track",
+      label: "Track Parcel",
+      icon: <FiTruck className="w-5 h-5" />,
+    },
+    {
+      path: "/dashboard/profile",
+      label: "Profile",
+      icon: <FiUser className="w-5 h-5" />,
+    },
+    {
+      path: "/dashboard/settings",
+      label: "Settings",
+      icon: <FiSettings className="w-5 h-5" />,
+    },
+  ];
+
   return (
     <div className="drawer lg:drawer-open">
       {/* Drawer Toggle Checkbox */}
@@ -55,13 +103,20 @@ const DashBoardLayout = () => {
 
           {/* Navigation Menu */}
           <nav className="space-y-2">
-            <Link
-              to="/dashboard/myParcels"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-emerald-600 hover:text-white"
-            >
-              <FiPackage className="w-5 h-5 text-emerald-400" />
-              My Parcels
-            </Link>
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                  location.pathname === item.path
+                    ? "bg-[#CAEB66] text-gray-900"
+                    : "hover:bg-[#CAEB66] hover:text-gray-900"
+                }`}
+              >
+                {item.icon}
+                {item.label}
+              </Link>
+            ))}
           </nav>
         </aside>
       </div>

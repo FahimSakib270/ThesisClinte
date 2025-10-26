@@ -117,7 +117,7 @@ const PaymentsForm = () => {
             icon: "success",
             title: "Payment Successful!",
             text: `Transaction ID: ${result.paymentIntent.id}`,
-            confirmButtonText: "OK",
+            confirmButtonText: "Go to My Parcel",
           }).then(() => {
             // Redirect to MyParcel page after confirmation
             navigate("/dashboard/myParcels");
