@@ -1,10 +1,17 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import useAuth from "../../../hooks/useAuth";
 
 const Login = () => {
-  const { signIn } = useAuth();
+  const { signIn, user } = useAuth();
+  console.log(user);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location);
+  const from = location.state?.from || "/";
+
   const {
     register,
     handleSubmit,
@@ -12,17 +19,17 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-    // You can add authentication logic here
     signIn(data.email, data.password)
       .then((userCredential) => {
-        // Signed in
-        const userSignedIn = userCredential.user;
-        console.log(userSignedIn);
+        console.log(
+          "Sign-in promise resolved. User credential:",
+          userCredential.user
+        );
+
+        navigate(from, { replace: true });
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        console.error("Login Error:", error);
       });
   };
 

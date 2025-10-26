@@ -9,6 +9,7 @@ import PrivateRoute from "../Routes/PrivateRoute"; // Assuming you plan to use t
 import SendParcel from "../Pages/SendParcel/SendParcel";
 import DashBoardLayout from "../Layouts/DashBoardLayout";
 import MyParcels from "../Pages/DashBoards/MyParcels/MyParcels";
+import Payments from "../Pages/DashBoards/Payments/Payments";
 
 export const router = createBrowserRouter([
   {
@@ -21,14 +22,14 @@ export const router = createBrowserRouter([
       },
       {
         path: "/coverage",
-        element: <Coverage />, // Use 'element' instead of 'Component'
+        element: <Coverage />,
       },
       {
         path: "/sendParcel",
         element: (
-          // <PrivateRoute>
-          <SendParcel />
-          // </PrivateRoute>
+          <PrivateRoute>
+            <SendParcel />
+          </PrivateRoute>
         ),
       },
     ],
@@ -56,9 +57,12 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        // Relative path: /dashboard/myParcels
-        path: "myParcels", // Changed from "/myParcels" to "myParcels"
-        element: <MyParcels />, // Use 'element' instead of 'Component'
+        path: "myParcels",
+        element: <MyParcels />,
+      },
+      {
+        path: "payment/:id",
+        Component: Payments,
       },
     ],
   },

@@ -15,38 +15,43 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  //create user with password
+
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
-  //signInuser
+
   const signIn = (email, password) => {
+    console.log("signIn called, setting loading to true");
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
-  //   signInWithGoogle
+
   const signInWithGoogle = () => {
+    console.log("signInWithGoogle called, setting loading to true");
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
-  //logout
+
   const Logout = () => {
+    console.log("Logout called, setting loading to true");
     setLoading(true);
     return signOut(auth);
   };
-  //Observer
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currenUser) => {
       setUser(currenUser);
-      console.log("user in the auth state change ", currenUser);
 
       setLoading(false);
     });
+
     return () => {
+      console.log("AuthProvider useEffect cleanup running (unsubscribe).");
       unSubscribe();
     };
   }, []);
+
   const authInfo = {
     createUser,
     signIn,
@@ -55,7 +60,16 @@ const AuthProvider = ({ children }) => {
     Logout,
     signInWithGoogle,
   };
-  return <AuthContext value={authInfo}>{children}</AuthContext>;
+
+  console.log(
+    "AuthProvider render complete. Providing - user:",
+    user,
+    "loading:",
+    loading
+  );
+  return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

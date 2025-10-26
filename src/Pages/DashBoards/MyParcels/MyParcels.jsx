@@ -3,26 +3,27 @@ import React from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FiEye, FiCreditCard, FiTrash2 } from "react-icons/fi";
-// Import Swal from sweetalert2
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const MyParcels = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const {
     data: parcels = [],
     isLoading,
     error,
-    refetch, // Destructure refetch to update the list after deletion
+    refetch,
   } = useQuery({
     queryKey: ["my-parcels", user?.email],
     queryFn: async () => {
       if (!user?.email) {
         throw new Error("User email not available");
       }
-      const res = await axiosSecure.get(`/api/parcels/user/${user.email}`); // This calls the backend route we added
-      console.log("Fetched parcels:", res.data); // Add this log to check the data received
+      const res = await axiosSecure.get(`/api/parcels/user/${user.email}`);
+      console.log("Fetched parcels:", res.data);
       return res.data;
     },
     enabled: !!user?.email,
@@ -37,41 +38,36 @@ const MyParcels = () => {
   const handlePay = (parcelId) => {
     // Navigate to a payment page for the parcel
     // Example: router.push(`/dashboard/myParcels/${parcelId}/pay`);
+    navigate(`/dashboard/payment/${parcelId}`);
     console.log("Pay for parcel:", parcelId);
   };
 
   const handleDelete = async (parcelId) => {
-    // Use Swal.fire for the confirmation dialog
     const result = await Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#d33", // Red color for danger
-      cancelButtonColor: "#3085d6", // Blue color for cancel
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
       confirmButtonText: "Yes, delete it!",
       cancelButtonText: "Cancel",
     });
 
-    // If the user confirms (clicks "Yes, delete it!")
     if (result.isConfirmed) {
       try {
-        // Make the API call to delete the parcel
-        // Note: You need to implement the DELETE route on your backend
-        await axiosSecure.delete(`/api/parcels/${parcelId}`); // Replace with your delete API endpoint if you add one
+        await axiosSecure.delete(`/api/parcels/${parcelId}`);
 
-        // Show success message
         Swal.fire({
           icon: "success",
           title: "Deleted!",
           text: "Your parcel has been deleted.",
         });
 
-        // Refetch the data to update the table and remove the deleted item
         refetch();
       } catch (err) {
         console.error("Error deleting parcel:", err);
-        // Show an error toast or message using Swal
+
         Swal.fire({
           icon: "error",
           title: "Error",
@@ -79,7 +75,6 @@ const MyParcels = () => {
         });
       }
     }
-    // If the user clicks "Cancel", the function just ends here without deleting.
   };
 
   if (isLoading) {
@@ -92,7 +87,7 @@ const MyParcels = () => {
   }
 
   if (error) {
-    console.error("Error in MyParcels component:", error); // Add this log to see the error details
+    console.error("Error in MyParcels component:", error);
     return (
       <div className="p-6">
         <h1 className="text-2xl font-bold mb-4">My Parcels</h1>
@@ -118,7 +113,7 @@ const MyParcels = () => {
                 <th>Delivery Status</th>
                 <th>Payment Status</th>
                 <th>Created</th>
-                <th>Actions</th> {/* Action column header */}
+                <th>Actions</th>
               </tr>
             </thead>
             {/* Table Body */}
@@ -158,8 +153,6 @@ const MyParcels = () => {
                   </td>
                   <td>{new Date(parcel.creation_date).toLocaleDateString()}</td>
                   <td>
-                    {" "}
-                    {/* Action buttons column - Removed the space {" "} */}
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleView(parcel._id)}
@@ -172,11 +165,11 @@ const MyParcels = () => {
                         onClick={() => handlePay(parcel._id)}
                         className={`btn btn-xs btn-ghost ${
                           parcel.payment_status === "paid"
-                            ? "text-green-500 cursor-not-allowed"
+                            ? "text-green-500 cursor-not-allowed opacity-50"
                             : "text-yellow-500 hover:text-yellow-700"
                         }`}
                         title="Pay"
-                        disabled={parcel.payment_status === "paid"} // Disable if already paid
+                        disabled={parcel.payment_status === "paid"}
                       >
                         <FiCreditCard className="h-4 w-4" />
                       </button>
