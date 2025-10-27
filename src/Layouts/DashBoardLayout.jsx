@@ -8,8 +8,8 @@ import {
   FiCreditCard,
   FiHome,
   FiTruck,
-  FiUser,
-  FiSettings,
+  FiUsers,
+  FiClock,
 } from "react-icons/fi";
 
 const DashBoardLayout = () => {
@@ -42,14 +42,14 @@ const DashBoardLayout = () => {
       icon: <FiTruck className="w-5 h-5" />,
     },
     {
-      path: "/dashboard/profile",
-      label: "Profile",
-      icon: <FiUser className="w-5 h-5" />,
+      path: "/dashboard/riders/active",
+      label: "Active Riders",
+      icon: <FiUsers className="w-5 h-5" />,
     },
     {
-      path: "/dashboard/settings",
-      label: "Settings",
-      icon: <FiSettings className="w-5 h-5" />,
+      path: "/dashboard/riders/pending",
+      label: "Pending Riders",
+      icon: <FiClock className="w-5 h-5" />,
     },
   ];
 

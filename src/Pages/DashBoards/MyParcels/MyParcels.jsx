@@ -22,7 +22,11 @@ const MyParcels = () => {
       if (!user?.email) {
         throw new Error("User email not available");
       }
-      const res = await axiosSecure.get(`/api/parcels/user/${user.email}`);
+      const res = await axiosSecure.get(`/api/parcels/user/${user.email}`, {
+        headers: {
+          Authorization: ` Bearer ${user.accessToken}`,
+        },
+      });
       console.log("Fetched parcels:", res.data);
       return res.data;
     },
