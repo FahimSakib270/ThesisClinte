@@ -77,7 +77,7 @@ const Coverage = () => {
             placeholder="Search district or area (e.g. Dhaka, Uttara)"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 pl-10"
+            className="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent pl-10"
           />
           <svg
             className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"
@@ -95,7 +95,7 @@ const Coverage = () => {
           </svg>
         </div>
         <button
-          className="px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 transition"
+          className="px-4 py-2 bg-[#CAEB66] text-black rounded-2xl  transition"
           onClick={() => setSearchQuery("")}
         >
           {searchQuery ? "Reset" : "Search"}

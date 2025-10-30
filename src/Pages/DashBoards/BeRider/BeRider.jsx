@@ -112,7 +112,7 @@ const BeRider = () => {
       <div className="max-w-7xl mx-auto bg-white rounded-xl shadow-lg p-8">
         {/* Header Section */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-green-800 mb-2">Be a Rider</h1>
+          <h1 className="text-3xl font-bold text-[#03373D] mb-2">Be a Rider</h1>
           <p className="text-gray-600 max-w-2xl">
             Enjoy fast, reliable parcel delivery with real-time tracking and
             zero hassle. From personal packages to business shipments — we
@@ -123,7 +123,7 @@ const BeRider = () => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Form Section */}
           <div className="lg:w-1/2">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">
+            <h2 className="text-xl font-semibold text-[#03373D] mb-4">
               Tell us about yourself
             </h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -136,7 +136,7 @@ const BeRider = () => {
                     type="text"
                     {...register("name")}
                     readOnly
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent bg-gray-100 cursor-not-allowed"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent bg-gray-100 cursor-not-allowed"
                     placeholder="Your Name"
                   />
                 </div>
@@ -155,7 +155,7 @@ const BeRider = () => {
                       max: { value: 80, message: "Please enter a valid age" },
                     })}
                     placeholder="Your age"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                   />
                   {errors.age && (
                     <p className="text-red-500 text-sm mt-1">
@@ -174,7 +174,7 @@ const BeRider = () => {
                     type="email"
                     {...register("email")}
                     readOnly
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent bg-gray-100 cursor-not-allowed"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent bg-gray-100 cursor-not-allowed"
                     placeholder="Your Email"
                   />
                 </div>
@@ -189,7 +189,7 @@ const BeRider = () => {
                     render={({ field }) => (
                       <select
                         {...field}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                       >
                         <option value="">Select your region</option>
                         {uniqueRegions.map((region) => (
@@ -217,7 +217,7 @@ const BeRider = () => {
                     type="text"
                     {...register("nid", { required: "NID is required" })}
                     placeholder="NID"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                   />
                   {errors.nid && (
                     <p className="text-red-500 text-sm mt-1">
@@ -239,7 +239,7 @@ const BeRider = () => {
                       },
                     })}
                     placeholder="Contact"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                   />
                   {errors.contact && (
                     <p className="text-red-500 text-sm mt-1">
@@ -260,7 +260,7 @@ const BeRider = () => {
                   render={({ field }) => (
                     <select
                       {...field}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                       disabled={!selectedRegion}
                       onChange={(e) => {
                         field.onChange(e);
@@ -288,7 +288,7 @@ const BeRider = () => {
 
               <button
                 type="submit"
-                className="w-full bg-green-400 hover:bg-green-500 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200"
+                className="w-full bg-[#CAEB66] hover:bg-[#CAEB66] text-black font-medium py-2 px-4 rounded-md transition-colors duration-200"
               >
                 Submit
               </button>

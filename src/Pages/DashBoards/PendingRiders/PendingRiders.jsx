@@ -50,7 +50,7 @@ const PendingRiders = () => {
       text: `Do you want to ${action} ${selectedRider.name}?`,
       icon: "question",
       showCancelButton: true,
-      confirmButtonColor: action === "approve" ? "#10B981" : "#EF4444", // Green for approve, Red for reject
+      confirmButtonColor: action === "approve" ? "#10B981" : "#EF4444",
       cancelButtonColor: "#6B7280",
       confirmButtonText:
         action === "approve" ? "Yes, Approve!" : "Yes, Reject!",

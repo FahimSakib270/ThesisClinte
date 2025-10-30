@@ -1,7 +1,10 @@
+// DashBoardLayout.jsx
 import React from "react";
 import { Link, Outlet, useLocation, Navigate } from "react-router";
 import ProfastLogo from "../Pages/Shared/ProFastLogo/ProfastLogo";
+import useUserRole from "../hooks/useUserRole"; // Adjust path as needed
 
+// Import all necessary icons
 import {
   FiPackage,
   FiMenu,
@@ -10,17 +13,24 @@ import {
   FiTruck,
   FiUsers,
   FiClock,
+  FiShield,
+  FiUserPlus,
+  FiMapPin,
+  FiCheckCircle,
+  FiTruck as FiRiderTruck,
 } from "react-icons/fi";
 
 const DashBoardLayout = () => {
   const location = useLocation();
+  const { isAdmin, isRoleLoading, role } = useUserRole(); // Get isAdmin status and general role
 
-  // If the current path is just /dashboard, redirect to myParcels
-  if (location.pathname === "/dashboard") {
-    return <Navigate to="/dashboard/myParcels" replace />;
-  }
+  // // If the current path is just /dashboard, redirect to myParcels
+  // if (location.pathname === "/dashboard") {
+  //   return <Navigate to="/dashboard/myParcels" replace />;
+  // }
 
-  const navItems = [
+  // Define base navigation items (always visible to authenticated users)
+  const baseNavItems = [
     {
       path: "/",
       label: "Home",
@@ -41,6 +51,10 @@ const DashBoardLayout = () => {
       label: "Track Parcel",
       icon: <FiTruck className="w-5 h-5" />,
     },
+  ];
+
+  // Define admin-specific navigation items
+  const adminNavItems = [
     {
       path: "/dashboard/riders/active",
       label: "Active Riders",
@@ -51,7 +65,57 @@ const DashBoardLayout = () => {
       label: "Pending Riders",
       icon: <FiClock className="w-5 h-5" />,
     },
+    {
+      path: "/dashboard/assign-rider",
+      label: "Assign Rider",
+      icon: <FiUserPlus className="w-5 h-5" />,
+    },
+    {
+      path: "/dashboard/manage-admin",
+      label: "Manage Admins",
+      icon: <FiShield className="w-5 h-5" />,
+    },
   ];
+
+  // Define rider-specific navigation items
+  const riderNavItems = [
+    {
+      path: "/dashboard/pending-deliveries",
+      label: "Pending Deliveries",
+      icon: <FiMapPin className="w-5 h-5" />,
+    },
+    {
+      path: "/dashboard/completed-deliveries",
+      label: "Completed Deliveries",
+      icon: <FiCheckCircle className="w-5 h-5" />,
+    },
+    {
+      path: "/dashboard/my-earnings",
+      label: "My Earnings",
+      icon: <FiRiderTruck className="w-5 h-5" />,
+    },
+  ];
+
+  // Combine navigation items based on user role
+  let navItems = [...baseNavItems]; // Start with base items
+
+  if (isAdmin) {
+    // If user is admin, add admin items
+    navItems = [...navItems, ...adminNavItems];
+  } else if (role === "rider") {
+    // If user is a rider (but not admin), add rider items
+    navItems = [...navItems, ...riderNavItems];
+  }
+  // If user is a regular user, they only see base items
+
+  // Show loading state while checking role
+  if (isRoleLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="drawer lg:drawer-open">

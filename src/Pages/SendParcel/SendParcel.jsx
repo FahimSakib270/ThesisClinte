@@ -1,14 +1,17 @@
+// src/Pages/DashBoards/SendParcel/SendParcel.jsx
 import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useNavigate } from "react-router";
 
 const SendParcel = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [warehouses, setWarehouses] = useState([]);
   const [pricingBreakdown, setPricingBreakdown] = useState(null);
+  const navigate = useNavigate();
 
   // Load warehouses data on component mount
   useEffect(() => {
@@ -247,6 +250,7 @@ const SendParcel = () => {
           2
         )}`,
       });
+      navigate("/dashboard/myParcels");
     } catch (error) {
       console.error("Error submitting parcel:", error);
 
@@ -331,7 +335,7 @@ const SendParcel = () => {
                   required: "Parcel title is required",
                 })}
                 placeholder="Parcel Name"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
               />
               {errors.parcelTitle && (
                 <p className="text-red-500 text-sm mt-1">
@@ -357,7 +361,7 @@ const SendParcel = () => {
                         : true,
                   })}
                   placeholder="Parcel Weight (KG)"
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                 />
                 {errors.parcelWeight && (
                   <p className="text-red-500 text-sm mt-1">
@@ -388,7 +392,7 @@ const SendParcel = () => {
                     required: "Sender name is required",
                   })}
                   placeholder="Sender Name"
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                 />
                 {errors.senderName && (
                   <p className="text-red-500 text-sm mt-1">
@@ -412,7 +416,7 @@ const SendParcel = () => {
                     },
                   })}
                   placeholder="Sender Contact No"
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                 />
                 {errors.senderContact && (
                   <p className="text-red-500 text-sm mt-1">
@@ -433,7 +437,7 @@ const SendParcel = () => {
                   render={({ field }) => (
                     <select
                       {...field}
-                      className="select select-bordered w-full"
+                      className="select select-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                     >
                       <option value="">Select your region</option>
                       {uniqueRegions.map((region) => (
@@ -463,7 +467,7 @@ const SendParcel = () => {
                   render={({ field }) => (
                     <select
                       {...field}
-                      className="select select-bordered w-full"
+                      className="select select-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                       disabled={!senderRegion}
                     >
                       <option value="">Select Wire House</option>
@@ -493,7 +497,7 @@ const SendParcel = () => {
                   })}
                   placeholder="Address"
                   rows={3}
-                  className="textarea textarea-bordered w-full"
+                  className="textarea textarea-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                 />
                 {errors.senderAddress && (
                   <p className="text-red-500 text-sm mt-1">
@@ -511,7 +515,7 @@ const SendParcel = () => {
                   {...register("senderInstruction")}
                   placeholder="Pickup Instruction"
                   rows={3}
-                  className="textarea textarea-bordered w-full"
+                  className="textarea textarea-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                 />
               </div>
             </div>
@@ -534,7 +538,7 @@ const SendParcel = () => {
                     required: "Receiver name is required",
                   })}
                   placeholder="Receiver Name"
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                 />
                 {errors.receiverName && (
                   <p className="text-red-500 text-sm mt-1">
@@ -558,7 +562,7 @@ const SendParcel = () => {
                     },
                   })}
                   placeholder="Receiver Contact No"
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                 />
                 {errors.receiverContact && (
                   <p className="text-red-500 text-sm mt-1">
@@ -579,7 +583,7 @@ const SendParcel = () => {
                   render={({ field }) => (
                     <select
                       {...field}
-                      className="select select-bordered w-full"
+                      className="select select-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                     >
                       <option value="">Select receiver region</option>
                       {uniqueRegions.map((region) => (
@@ -609,7 +613,7 @@ const SendParcel = () => {
                   render={({ field }) => (
                     <select
                       {...field}
-                      className="select select-bordered w-full"
+                      className="select select-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                       disabled={!receiverRegion}
                     >
                       <option value="">Select Wire House</option>
@@ -639,7 +643,7 @@ const SendParcel = () => {
                   })}
                   placeholder="Receiver Address"
                   rows={3}
-                  className="textarea textarea-bordered w-full"
+                  className="textarea textarea-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                 />
                 {errors.receiverAddress && (
                   <p className="text-red-500 text-sm mt-1">
@@ -657,7 +661,7 @@ const SendParcel = () => {
                   {...register("receiverInstruction")}
                   placeholder="Delivery Instruction"
                   rows={3}
-                  className="textarea textarea-bordered w-full"
+                  className="textarea textarea-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
                 />
               </div>
             </div>
@@ -666,7 +670,10 @@ const SendParcel = () => {
 
         {/* Submit Button */}
         <div className="pt-4">
-          <button type="submit" className="btn btn-success w-full">
+          <button
+            type="submit"
+            className="btn bg-[#CAEB66] hover:bg-[#b8d85a] w-full focus:outline-none focus:ring-2 focus:ring-[#CAEB66] focus:border-transparent"
+          >
             Book Parcel
           </button>
         </div>
