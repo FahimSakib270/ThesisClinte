@@ -21,7 +21,7 @@ const Navbar = () => {
           to="/"
           className={({ isActive }) =>
             isActive
-              ? "bg-[#CAEB66] text-gray-900 rounded-lg px-3 py-2 font-semibold"
+              ? "bg-[#CAEB66] text-gray-900 rounded-lg px-3 py-2 font-semibold mr-2"
               : "rounded-lg px-3 py-2 hover:bg-[#CAEB66] hover:text-gray-900 font-semibold"
           }
         >
@@ -33,7 +33,7 @@ const Navbar = () => {
           to="/sendParcel"
           className={({ isActive }) =>
             isActive
-              ? "bg-[#CAEB66] text-gray-900 rounded-lg px-3 py-2 font-semibold"
+              ? "bg-[#CAEB66] text-gray-900 rounded-lg px-3 py-2 font-semibold mr-2"
               : "rounded-lg px-3 py-2 hover:bg-[#CAEB66] hover:text-gray-900 font-semibold"
           }
         >
@@ -45,7 +45,7 @@ const Navbar = () => {
           to="/coverage"
           className={({ isActive }) =>
             isActive
-              ? "bg-[#CAEB66] text-gray-900 rounded-lg px-3 py-2 font-semibold"
+              ? "bg-[#CAEB66] text-gray-900 rounded-lg px-3 py-2 font-semibold mr-2"
               : "rounded-lg px-3 py-2 hover:bg-[#CAEB66] hover:text-gray-900 font-semibold"
           }
         >
@@ -59,7 +59,7 @@ const Navbar = () => {
               to="/dashboard"
               className={({ isActive }) =>
                 isActive
-                  ? "bg-[#CAEB66] text-gray-900 rounded-lg px-3 py-2 font-semibold"
+                  ? "bg-[#CAEB66] text-gray-900 rounded-lg px-3 py-2 font-semibold mr-2"
                   : "rounded-lg px-3 py-2 hover:bg-[#CAEB66] hover:text-gray-900 font-semibold"
               }
             >
@@ -73,7 +73,7 @@ const Navbar = () => {
           to="/about"
           className={({ isActive }) =>
             isActive
-              ? "bg-[#CAEB66] text-gray-900 rounded-lg px-3 py-2 font-semibold"
+              ? "bg-[#CAEB66] text-gray-900 rounded-lg px-3 py-2 font-semibold mr-2"
               : "rounded-lg px-3 py-2 hover:bg-[#CAEB66] hover:text-gray-900 font-semibold"
           }
         >
@@ -86,7 +86,7 @@ const Navbar = () => {
           to="/be_a_rider"
           className={({ isActive }) =>
             isActive
-              ? "bg-[#CAEB66] text-gray-900 rounded-lg px-3 py-2 font-semibold"
+              ? "bg-[#CAEB66] text-gray-900 rounded-lg px-3 py-2 font-semibold mr-2"
               : "rounded-lg px-3 py-2 hover:bg-[#CAEB66] hover:text-gray-900 font-semibold"
           }
         >
@@ -224,9 +224,14 @@ const Navbar = () => {
         </div>
       ) : (
         <div className="navbar-end">
-          <Link className="bg-[#CAEB66] btn" to="/login">
-            Login
-          </Link>
+          <div className="flex  justify-between gap-2">
+            <Link className="bg-[#CAEB66] btn" to="/login">
+              Sign In
+            </Link>
+            <Link className="bg-[#CAEB66] btn" to="/register">
+              Sign Up
+            </Link>
+          </div>
         </div>
       )}
     </div>

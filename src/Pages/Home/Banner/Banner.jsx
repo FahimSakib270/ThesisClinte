@@ -13,7 +13,7 @@ const Banner = () => {
   ];
 
   return (
-    <div className="banner-container my-10">
+    <div className="banner-container mb-10">
       <Carousel
         autoPlay
         infiniteLoop
